@@ -1,9 +1,7 @@
 #!/bin/bash
 
 # creating directory build if not exist
-if [ -d ".build" ]; then
-	mkdir build
-fi
+mkdir -p build
 cd build
 
 # running cmake
