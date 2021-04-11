@@ -2,19 +2,23 @@
 
 # creating directory build if not exist
 mkdir -p build
-cd build
+cd build || exit
 
 # running cmake
-cmake ..
+if ! cmake ..; then
+  exit 1
+fi
 
 # running make
-make
-
-# copying compile_commands.json
-if [ -d "../compile_commands.json" ]; then
-	rm ../compile_commands.json
+if ! make; then
+    exit 1
 fi
-cp ./compile_commands.json ../compile_commands.json
+
+# copy program resources
+# if [ -d build/bin/res ]; then
+#   rm -r build/bin/res/
+# fi
+# cp -r ../res build/bin/
 
 # returning to root directory
 cd ..
